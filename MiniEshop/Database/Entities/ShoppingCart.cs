@@ -1,14 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace MiniEshop.Database.Entities
 {
     public class ShoppingCart
     {
-        public int ShoppingCartId { get; set; }
-        public bool isActive { get; set; }
+        public int Id { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; }
+
+        [Required]
         public int UserId { get; set; }
+
+        [Required]
+        public DateTime DateCreated { get; set; }
+
+        public User User { get; set; }
     }
 }

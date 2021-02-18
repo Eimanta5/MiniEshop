@@ -1,12 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MiniEshop.Database.Entities
+namespace MiniEshop.Models.Actions
 {
-    public class Product
+    public class CreateProduct
     {
-        public int Id { get; set; }
-
         [Required]
         public int Quantity { get; set; }
 
@@ -20,11 +17,5 @@ namespace MiniEshop.Database.Entities
         [Required]
         [MaxLength(2560)]
         public string Description { get; set; }
-
-        [Required]
-        public DateTime Created { get; set; }
-        
-        [Required]
-        public DateTime Updated { get; set; }
     }
 }
