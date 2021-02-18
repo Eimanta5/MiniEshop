@@ -66,16 +66,12 @@ namespace MiniEshop.UnitTests
             var callToGetProduct = A.CallTo(() => _productRepository.GetProductAsync(productId));
             callToGetProduct.Returns(productEntity);
 
-            var callToCheckProduct = A.CallTo(() => _cartRepository.IsProductInCart(shoppingCartId, productId));
-            callToCheckProduct.Returns(false);
-
             var callToAddProduct = A.CallTo(() => _cartRepository.AddShoppingCartProductAsync(cartEntity, productEntity, request.Quantity));
 
             await _cartService.AddProductToShoppingCartAsync(request, userId);
 
             callToGetShoppingCart.MustHaveHappenedOnceExactly();
             callToGetProduct.MustHaveHappenedOnceExactly();
-            callToCheckProduct.MustHaveHappenedOnceExactly();
             callToAddProduct.MustHaveHappenedOnceExactly();
         }
 

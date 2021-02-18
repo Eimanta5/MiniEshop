@@ -72,11 +72,5 @@ namespace MiniEshop.Repositories
             _databaseContext.ShoppingCarts.Update(entity);
             await _databaseContext.SaveChangesAsync();
         }
-
-        public async Task<bool> IsProductInCart(int shoppingCartId, int productId)
-        {
-            return await _databaseContext.ShoppingCartProducts
-                .AnyAsync(x => x.ProductId == productId && x.ShoppingCartId == shoppingCartId);
-        }
     }
 }

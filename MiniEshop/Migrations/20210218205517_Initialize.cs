@@ -96,17 +96,23 @@ namespace MiniEshop.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Created", "Email", "IsAdministration", "Name", "Password", "PhoneNumber", "Surname" },
-                values: new object[] { 1, new DateTime(2021, 2, 18, 19, 23, 37, 312, DateTimeKind.Utc).AddTicks(59), "basic@email.com", false, "Basic", "password", "+37065555555", "User" });
+                values: new object[] { 1, new DateTime(2021, 2, 18, 20, 55, 16, 517, DateTimeKind.Utc).AddTicks(2680), "basic@email.com", false, "Basic", "password", "+37065555555", "User" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "Created", "Email", "IsAdministration", "Name", "Password", "PhoneNumber", "Surname" },
-                values: new object[] { 2, new DateTime(2021, 2, 18, 19, 23, 37, 312, DateTimeKind.Utc).AddTicks(2513), "admin@email.com", true, "Administration", "password", "+37065555155", "User" });
+                values: new object[] { 2, new DateTime(2021, 2, 18, 20, 55, 16, 517, DateTimeKind.Utc).AddTicks(7105), "admin@email.com", true, "Administration", "password", "+37065555155", "User" });
 
             migrationBuilder.InsertData(
                 table: "ShoppingCart",
                 columns: new[] { "Id", "DateCreated", "IsActive", "UserId" },
-                values: new object[] { 1, new DateTime(2021, 2, 18, 19, 23, 37, 314, DateTimeKind.Utc).AddTicks(830), true, 1 });
+                values: new object[] { 1, new DateTime(2021, 2, 18, 20, 55, 16, 520, DateTimeKind.Utc).AddTicks(3776), true, 1 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_Name",
+                table: "Product",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCart_UserId",
@@ -114,14 +120,27 @@ namespace MiniEshop.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCartProduct_ProductId",
+                name: "IX_ShoppingCartProduct_ProductId_ShoppingCartId",
                 table: "ShoppingCartProduct",
-                column: "ProductId");
+                columns: new[] { "ProductId", "ShoppingCartId" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartProduct_ShoppingCartId",
                 table: "ShoppingCartProduct",
                 column: "ShoppingCartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_PhoneNumber",
+                table: "User",
+                column: "PhoneNumber",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

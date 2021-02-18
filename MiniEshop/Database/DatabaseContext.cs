@@ -15,7 +15,10 @@ namespace MiniEshop.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<Product>()
+                .ToTable("Product")
+                .HasIndex(i => i.Name).IsUnique();
+
             modelBuilder.Entity<User>()
                 .ToTable("User")
                 .HasData(
@@ -42,6 +45,9 @@ namespace MiniEshop.Database
                     Password = "password",
                     PhoneNumber = "+37065555155"
                 });
+
+            modelBuilder.Entity<User>().HasIndex(x => x.PhoneNumber).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(x => x.Email).IsUnique();
 
             modelBuilder.Entity<ShoppingCart>()
                 .ToTable("ShoppingCart")

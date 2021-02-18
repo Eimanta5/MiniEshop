@@ -10,7 +10,7 @@ using MiniEshop.Database;
 namespace MiniEshop.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210218192338_Initialize")]
+    [Migration("20210218205517_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,9 @@ namespace MiniEshop.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Product");
                 });
 
@@ -81,7 +84,7 @@ namespace MiniEshop.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 2, 18, 19, 23, 37, 314, DateTimeKind.Utc).AddTicks(830),
+                            DateCreated = new DateTime(2021, 2, 18, 20, 55, 16, 520, DateTimeKind.Utc).AddTicks(3776),
                             IsActive = true,
                             UserId = 1
                         });
@@ -108,9 +111,10 @@ namespace MiniEshop.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
                     b.HasIndex("ShoppingCartId");
+
+                    b.HasIndex("ProductId", "ShoppingCartId")
+                        .IsUnique();
 
                     b.ToTable("ShoppingCartProduct");
                 });
@@ -155,13 +159,19 @@ namespace MiniEshop.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
+
                     b.ToTable("User");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2021, 2, 18, 19, 23, 37, 312, DateTimeKind.Utc).AddTicks(59),
+                            Created = new DateTime(2021, 2, 18, 20, 55, 16, 517, DateTimeKind.Utc).AddTicks(2680),
                             Email = "basic@email.com",
                             IsAdministration = false,
                             Name = "Basic",
@@ -172,7 +182,7 @@ namespace MiniEshop.Migrations
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2021, 2, 18, 19, 23, 37, 312, DateTimeKind.Utc).AddTicks(2513),
+                            Created = new DateTime(2021, 2, 18, 20, 55, 16, 517, DateTimeKind.Utc).AddTicks(7105),
                             Email = "admin@email.com",
                             IsAdministration = true,
                             Name = "Administration",

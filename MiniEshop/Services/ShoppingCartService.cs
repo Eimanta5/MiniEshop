@@ -40,10 +40,6 @@ namespace MiniEshop.Services
             if (product.Quantity < request.Quantity)
                 throw new Exception("Not enough items");
 
-            var exists = await _cartRepository.IsProductInCart(shoppingCart.Id, product.Id);
-            if (exists)
-                throw new Exception("Can't add same products in the same cart");
-
             await _cartRepository.AddShoppingCartProductAsync(shoppingCart, product, request.Quantity);
             return new NoContentResult();
         }

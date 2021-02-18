@@ -13,6 +13,5 @@ namespace MiniEshop.Repositories.Interfaces
         Task<ShoppingCart> GetActiveShoppingCartAsync(int userId);
         Task UpdateShoppingCartAsync(ShoppingCart entity);
         Task<ShoppingCart> AddShoppingCartAsync(ShoppingCart entity);
-        Task<bool> IsProductInCart(int shoppingCartId, int productId);
     }
 }
