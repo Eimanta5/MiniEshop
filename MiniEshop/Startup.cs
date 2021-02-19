@@ -101,9 +101,6 @@ namespace MiniEshop
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthentication();

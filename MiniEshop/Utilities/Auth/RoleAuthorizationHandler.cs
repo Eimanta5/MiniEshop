@@ -17,7 +17,6 @@ namespace MiniEshop.Utilities.Auth
                 context.Fail();
                 return Task.CompletedTask;
             }
-                
 
             if (requirement.AllowedRoles.Contains(claim.Value))
                 context.Succeed(requirement);
