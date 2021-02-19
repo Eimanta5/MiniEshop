@@ -19,7 +19,6 @@ namespace MiniEshop.Controllers
             _userService = userService;
         }
 
-        [Authorize(Roles = Roles.UserAndAdministration)]
         [HttpGet("api/users/{userId}")]
         [ProducesResponseType(typeof(UserDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -28,14 +27,6 @@ namespace MiniEshop.Controllers
             return await _userService.GetUserInfo(userId);
         }
 
-        [Authorize(Roles = Roles.Administration)]
-        [HttpPost("api/users")]
-        [ProducesResponseType(typeof(UserDto), (int)HttpStatusCode.Created)]
-        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
-        public async Task<ActionResult<UserDto>> CreateUserAsync([FromBody]CreateUser request)
-        {
-            return await _userService.CreateUserAsync(request);
-        }
+        
     }
 }

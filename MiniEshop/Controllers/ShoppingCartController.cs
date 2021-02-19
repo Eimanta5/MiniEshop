@@ -20,7 +20,7 @@ namespace MiniEshop.Controllers
             _cartService = cartService;
         }
 
-        [Authorize(Roles = Roles.UserAndAdministration)]
+        [Authorize(Roles = Roles.User)]
         [HttpGet("api/shoppingCart/{shoppingCartId}/products")]
         [ProducesResponseType(typeof(IEnumerable<ProductDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -30,7 +30,7 @@ namespace MiniEshop.Controllers
             return await _cartService.GetActiveCartProductsAsync(userId, shoppingCartId);
         }
 
-        [Authorize(Roles = Roles.UserAndAdministration)]
+        [Authorize(Roles = Roles.User)]
         [HttpPost("api/shoppingCart/products")]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
